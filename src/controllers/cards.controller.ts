@@ -1,8 +1,6 @@
 const fs = require("fs/promises");
 const { selectCards, selectCard } = require('../models/cards.model')
 
-//console.log("in the controller")
-
 exports.getCards = (request, response) => {
     try {
         selectCards()

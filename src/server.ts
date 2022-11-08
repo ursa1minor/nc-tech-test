@@ -1,7 +1,6 @@
 import * as express from "express";
 export const app = express()
 
-import * as path from 'path';
 const fs = require("fs/promises");
 const { getCards, getCard } = require('./controllers/cards.controller')
 

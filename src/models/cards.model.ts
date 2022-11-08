@@ -1,8 +1,5 @@
 import * as path from 'path';
 const fs = require("fs/promises");
-import * as express from "express";
-
-//console.log("in the model")
 
 exports.selectCards = () => {
     try {

@@ -22,9 +22,8 @@ Use Insomnia to read data
 Set up Controller / Model file structure
 Write GET /cards tests
 Return list of cards
-
+Write GET /cards/:card test
 Find card by id
+
 Post card
 Delete card
-
-

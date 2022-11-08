@@ -18,26 +18,25 @@ exports.getCards = (request, response) => {
           
           }   
         }  
-        
+
 exports.getCard = (request, response) => {
-  let { cardId, sizeId } = request.params;
-  try {
-    selectCards()
-      .then((cards) => {   
-        if (cards.length > 0) {
-         // selectCard()
-         // .then((card) => {
-            response.status(200).send( cards[0] )
-         // })
-          }
-          else {
-          response.status(404).send("Items not found")
-          }
-        })
-      } catch (error) {
-      
-      }   
-    }  
+  let { cardId } = request.params;
+    try {
+        selectCard( cardId )
+          .then((card) => { 
+            if (card) {           
+              response.status(200).send( card )
+             } else {
+              response.status(404).send("Item not found")
+              }
+            })
+          } catch (error) {
+                
+          }   
+        }  
+        
+
+    
 
 
     

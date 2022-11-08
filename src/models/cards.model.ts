@@ -1,5 +1,6 @@
 import * as path from 'path';
 const fs = require("fs/promises");
+import * as express from "express";
 
 console.log("in the model")
 
@@ -29,3 +30,21 @@ exports.selectCards = () => {
 
     }
 };
+
+exports.selectCard = ( cardId ) => {
+    try {
+        
+        return fs.readFile(path.resolve(__dirname, `../data/cards.json`))
+        .then((cardsData) => {
+            const cards = JSON.parse(cardsData);
+            const foundCard = cards.find((card: {id: string}) => card.id === cardId)
+            if (foundCard) {
+                return foundCard;
+            }
+            
+        })
+        
+    } catch (error) {
+
+    }  
+}

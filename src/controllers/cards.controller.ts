@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const { selectCards, selectCard } = require('../models/cards.model')
 
-console.log("in the controller")
+//console.log("in the controller")
 
 exports.getCards = (request, response) => {
     try {
@@ -24,6 +24,7 @@ exports.getCard = (request, response) => {
     try {
         selectCard( cardId )
           .then((card) => { 
+
             if (card) {           
               response.status(200).send( card )
              } else {

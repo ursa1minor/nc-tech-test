@@ -31,4 +31,10 @@ describe(`GET /cards/:cardId/:sizeId?`, () => {
         const response = await request(app).get('/cards/card017');
         expect(response.status).toBe(404);
       })
+  test('returns card containing correct key value properties', async () => {
+        const response = await request(app).get('/cards/card002');
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual(expect.objectContaining({title: "card 2 title"}));
+        expect(response.body).toEqual(expect.objectContaining({imageUrl: "/front-cover-portrait-2.jpg"}));
+      })
 })

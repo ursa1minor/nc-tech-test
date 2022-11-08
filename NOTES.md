@@ -20,10 +20,18 @@ Test failing
 Load JSON data into memory
 Use Insomnia to read data
 Set up Controller / Model file structure
-Write GET /cards tests
-Return list of cards
-Write GET /cards/:card test
-Find card by id
 
-Post card
-Delete card
+GET /cards
+- Write GET /cards tests
+- Return list of cards
+
+GET /cards/:cardId
+- Write GET /cards/:cardId tests
+- Find card by id
+
+## Still to do
+- Write further GET /cards/:cardId tests to test for display sizes and pages information
+- Write further GET /cards/:cardId/:sizeId? tests to allow for optional size parameter
+
+POST /cards
+DELETE /cards/:cardId

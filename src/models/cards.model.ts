@@ -47,8 +47,8 @@ exports.selectCard = ( cardId ) => {
                         "imageUrl": foundTemplate["imageUrl"],
                         "card_id": foundCard["id"],
                         "base_price": foundCard["basePrice"],
-                        "availableSizes": ["sizes"],
-                        "pages": ["pages"]
+                        "availableSizes": foundCard["sizes"],
+                        "pages": foundCard["pages"]
                     })
             }
             return singleCardList[0];

@@ -18,12 +18,11 @@ yarn test
 Test failing
 
 Load JSON data into memory
+Use Insomnia to read data
+Set up Controller / Model file structure
+Write GET /cards tests
 
-Write /cards test
 Return list of cards
-
-Set up Controller / Model
-
 Find card by id
 Post card
 Delete card

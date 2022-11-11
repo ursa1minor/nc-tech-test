@@ -2,7 +2,6 @@ import * as path from 'path';
 const fs = require("fs/promises");
 
 exports.selectCards = () => {
-    try {
         const cardList: object[] = [];
         return fs.readFile(path.resolve(__dirname, `../data/cards.json`))
         .then((cardsData) => {
@@ -21,15 +20,11 @@ exports.selectCards = () => {
                         })
                 }
                 return cardList;
-            })
-        }) 
-    } catch (error) {
-
-    }
-};
+            });
+        }); 
+    };
 
 exports.selectCard = ( cardId ) => {
-    try {
         const singleCardList: object[] = [];
         return fs.readFile(path.resolve(__dirname, `../data/cards.json`))
         .then((cardsData) => {
@@ -52,11 +47,6 @@ exports.selectCard = ( cardId ) => {
                     })
             }
             return singleCardList[0];
-        })
-          
-         })
-            
-        } catch (error) {
-
-    }  
-}
+        });     
+    });  
+}; 

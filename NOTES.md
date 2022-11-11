@@ -17,9 +17,9 @@ yarn test
 
 Test failing
 
-Load JSON data into memory
-Use Insomnia to read data
-Set up Controller / Model file structure
+- Load JSON data into memory
+- Use Insomnia to read data
+- Set up Controller / Model file structure
 
 GET /cards
 - Write GET /cards tests
@@ -29,9 +29,11 @@ GET /cards/:cardId
 - Write GET /cards/:cardId tests
 - Find card by id
 
+- Update sizes.json to contain correct size information
+
 ## Still to do
 - Write further GET /cards/:cardId tests to test for display sizes and pages information
 - Write further GET /cards/:cardId/:sizeId? tests to allow for optional size parameter
 
-POST /cards
-DELETE /cards/:cardId
+- POST /cards
+- DELETE /cards/:cardId

@@ -30,8 +30,10 @@ exports.selectCard = async ( cardId ) => {
         const cards = JSON.parse(cardsData);
         const foundCard = cards.find((card: {id: string}) => card.id === cardId)
 
-        if (foundCard) {
-
+        if (!foundCard) {
+            throw 404;
+        } else {
+            
         const card = {
             "title": "",
             "imageUrl": "",
@@ -51,7 +53,6 @@ exports.selectCard = async ( cardId ) => {
             card.base_price = foundCard["basePrice"];
             card.availableSizes = foundCard["sizes"];
             card.pages = foundCard["pages"]; 
-
         return card;     
         } 
     } catch (error) {

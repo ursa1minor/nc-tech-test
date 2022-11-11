@@ -36,5 +36,16 @@ describe(`GET /cards/:cardId/:sizeId?`, () => {
         expect(response.status).toBe(200);
         expect(response.body).toEqual(expect.objectContaining({title: "card 2 title"}));
         expect(response.body).toEqual(expect.objectContaining({imageUrl: "/front-cover-portrait-2.jpg"}));
+        expect(response.body).toEqual(expect.objectContaining({availableSizes: [{ "id": "md", "title": "Medium" }]}));
       })
+    test('returns card containing correct key value properties including multiple sizes', async () => {
+        const response = await request(app).get('/cards/card001');
+        expect(response.status).toBe(200);
+        expect(response.body.availableSizes).toEqual([
+          { "id": "sm", "title": "Small" },
+          { "id": "md", "title": "Medium" },
+          { "id": "gt", "title": "Giant" }
+        ])
+    });
 })
+    

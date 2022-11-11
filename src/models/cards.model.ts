@@ -26,25 +26,31 @@ exports.selectCards = async () => {
 
 exports.selectCard = async ( cardId ) => {
     try {
-        const singleCardList: object[] = [];
+        const card = {
+            "title": "",
+            "imageUrl": "",
+            "card_id": "",
+            "base_price": "",
+            "availableSizes": "",
+            "pages": ""
+        }
 
         const cardsData = await fs.readFile(path.resolve(__dirname, `../data/cards.json`));
         const cards = JSON.parse(cardsData);
         const foundCard = cards.find((card: {id: string}) => card.id === cardId)
-        
+
         const templatesData = await fs.readFile(path.resolve(__dirname, `../data/templates.json`))
         const templates = JSON.parse(templatesData);
         const foundTemplate = templates.find((template: {id: string}) => template.id === foundCard["pages"][0]["templateId"])
             
-            singleCardList.push({
-                "title": foundCard["title"],
-                "imageUrl": foundTemplate["imageUrl"],
-                "card_id": foundCard["id"],
-                "base_price": foundCard["basePrice"],
-                "availableSizes": foundCard["sizes"],
-                "pages": foundCard["pages"]
-            })
-            return singleCardList[0];     
+            card.title = foundCard["title"];
+            card.imageUrl = foundTemplate["imageUrl"];
+            card.card_id = foundCard["id"];
+            card.base_price = foundCard["basePrice"];
+            card.availableSizes = foundCard["sizes"];
+            card.pages = foundCard["pages"]; 
+
+        return card;     
     } catch (error) {
         return error;   
     }  

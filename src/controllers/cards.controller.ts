@@ -1,36 +1,22 @@
-const fs = require("fs/promises");
+//const fs = require("fs");
 const { selectCards, selectCard } = require('../models/cards.model')
 
-exports.getCards = (request, response) => {
-        selectCards()
-          .then((cards) => {   
-            if (cards.length > 0) {
-              response.status(200).send( cards )
-              }
-              else {
-              response.status(404).send("Items not found")
-              }
-          })
-        } 
+exports.getCards = async (request, response) => {
+  try {
+    const cards = await selectCards();
+    response.status(200).send(cards)
+  } catch (error) {
+    response.status(404).send("Items not found")
+  }
+} 
 
-exports.getCard = (request, response) => {
-  let { cardId } = request.params;
-        selectCard( cardId )
-          .then((card) => { 
-
-            if (card) {           
-              response.status(200).send( card )
-             } else {
-              response.status(404).send("Item not found")
-            }
-          })
-        }  
-        
-
-    
-
-
-    
-
-  
-
+exports.getCard = async (request, response) => {
+  try {
+    let { cardId } = request.params;
+    const card = await selectCard( cardId )
+    console.log (cardId)
+    response.status(200).send(card)
+  } catch (error) {
+    response.status(404).send("Item not found")
+  }
+}

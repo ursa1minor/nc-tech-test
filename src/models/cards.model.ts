@@ -26,6 +26,12 @@ exports.selectCards = async () => {
 
 exports.selectCard = async ( cardId ) => {
     try {
+        const cardsData = await fs.readFile(path.resolve(__dirname, `../data/cards.json`));
+        const cards = JSON.parse(cardsData);
+        const foundCard = cards.find((card: {id: string}) => card.id === cardId)
+
+        if (foundCard) {
+
         const card = {
             "title": "",
             "imageUrl": "",
@@ -33,11 +39,7 @@ exports.selectCard = async ( cardId ) => {
             "base_price": "",
             "availableSizes": "",
             "pages": ""
-        }
-
-        const cardsData = await fs.readFile(path.resolve(__dirname, `../data/cards.json`));
-        const cards = JSON.parse(cardsData);
-        const foundCard = cards.find((card: {id: string}) => card.id === cardId)
+        } 
 
         const templatesData = await fs.readFile(path.resolve(__dirname, `../data/templates.json`))
         const templates = JSON.parse(templatesData);
@@ -51,6 +53,7 @@ exports.selectCard = async ( cardId ) => {
             card.pages = foundCard["pages"]; 
 
         return card;     
+        } 
     } catch (error) {
         return error;   
     }  

@@ -30,9 +30,10 @@ GET /cards/:cardId
 - Find card by id
 
 - Update sizes.json to contain correct size information
+- Adopt 'async await' syntax
 
 ## Still to do
-- Write further GET /cards/:cardId tests to test for display sizes and pages information
+- Write further GET /cards/:cardId tests to test for display sizes information
 - Write further GET /cards/:cardId/:sizeId? tests to allow for optional size parameter
 
 - POST /cards

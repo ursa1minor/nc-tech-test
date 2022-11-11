@@ -1,4 +1,3 @@
-//const fs = require("fs");
 const { selectCards, selectCard } = require('../models/cards.model')
 
 exports.getCards = async (request, response) => {
@@ -6,7 +5,7 @@ exports.getCards = async (request, response) => {
     const cards = await selectCards();
     response.status(200).send(cards)
   } catch (error) {
-    response.status(404).send("Items not found")
+    response.status(404).send({message: error.message});
   }
 } 
 
@@ -17,6 +16,6 @@ exports.getCard = async (request, response) => {
     console.log (cardId)
     response.status(200).send(card)
   } catch (error) {
-    response.status(404).send("Item not found")
+    response.status(404).send({message: error.message});
   }
 }

@@ -131,7 +131,7 @@ Expected response would be a confirmation the deletion has happened, either via 
 
 ## Tools, Libraries and frameworks
 
-An app skeleton is provided for your convenience. It consists of the following tools:
+An app skeleton is provided, which includes the following tools:
 
 - Express
 - Jest for unit/integration testing

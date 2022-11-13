@@ -1,4 +1,4 @@
-const { selectCards, selectCard, insertCard } = require('../models/cards.model')
+const { selectCards, selectCard, insertCard, removeCard } = require('../models/cards.model')
 
 exports.getCards = async (req, res) => {
   try {
@@ -25,5 +25,15 @@ exports.postCard = async (req, res) => {
       res.status(201).send(card)
   } catch (error) {
     res.status(404).send({ message: error.message });
+  }
+}
+
+exports.deleteCard = async (req, res) => {
+  try {
+    const { cardId } = req.params;
+    const card = await removeCard( cardId );
+    res.status(200).send({ message: "Card deleted" })
+  } catch (error) {
+    res.status(404).send({ message: error.message });  
   }
 }

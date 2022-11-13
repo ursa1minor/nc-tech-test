@@ -38,8 +38,14 @@ POST /cards
 - Write POST /cards tests
 - Post new card
 
+DELETE /cards/:cardId
+- Write DELETE /cards/:cardId tests
+- Delete card by cardId
+
+SEED DATA
+- So tests can run smoothly in sequence
+
 ## Still to do
 
 - Write further GET /cards/:cardId/:sizeId? tests to allow for optional size parameter
 
-- DELETE /cards/:cardId

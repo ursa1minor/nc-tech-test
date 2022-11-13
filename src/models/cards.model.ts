@@ -131,7 +131,6 @@ exports.insertCard = async ( card ) => {
 
 exports.removeCard = async ( cardId ) => {
     try {
-        console.log(cardId)
         const cardsData = await fs.readFile(path.resolve(__dirname, `../data/cards.json`));
         const cards = JSON.parse(cardsData);
         const foundCard = cards.find((card: {id: string}) => card.id === cardId)
@@ -143,7 +142,6 @@ exports.removeCard = async ( cardId ) => {
         const newCardCount = cardCount - 1;
 
         const cardIndex = cards.findIndex((card: {id: string}) => card.id === cardId);
-        console.log(cardIndex)
         const newCards = cards;
         const deletedCard = newCards.splice(cardIndex, 1);
 

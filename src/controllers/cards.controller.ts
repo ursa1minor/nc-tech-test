@@ -1,20 +1,29 @@
-const { selectCards, selectCard } = require('../models/cards.model')
+const { selectCards, selectCard, insertCard } = require('../models/cards.model')
 
-exports.getCards = async (request, response, next) => {
+exports.getCards = async (req, res) => {
   try {
     const cards = await selectCards();
-      response.status(200).send(cards)
+      res.status(200).send(cards)
   } catch (error) {
-      response.status(404).send({ message: error.message });
+      res.status(404).send({ message: error.message });
   };
 }; 
 
-exports.getCard = async (request, response) => {
+exports.getCard = async (req, res) => {
   try {
-    const { cardId } = request.params;
+    const { cardId } = req.params;
     const card = await selectCard( cardId );
-      response.status(200).send(card) 
+      res.status(200).send(card) 
   } catch (error) {
-      response.status(404).send({ message: error.message })
+      res.status(404).send({ message: error.message });
   };
 };
+
+exports.postCard = async (req, res) => {
+  try {    
+    const card = await insertCard( req.body );
+      res.status(201).send(card)
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+}

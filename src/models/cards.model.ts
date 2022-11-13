@@ -65,10 +65,70 @@ exports.selectCard = async ( cardId ) => {
                     card.availableSizes = foundSizes;
                     card.pages = foundCard["pages"]; 
                 return card;   
-            
         }
     } catch (error) {
         return error;   
-    }  
+    };  
+};
+
+exports.insertCard = async ( card ) => {
+    try {
+        if (!Object.keys(card).length) {
+            throw 400;
+        } 
+        if (!Object.keys(card).includes("sizes")) {
+            throw 400;
+        }
+        if (!Object.keys(card).includes("basePrice")) {
+            throw 400;
+        }
+        if (!Object.keys(card).includes("pages")) {
+            throw 400;
+        }
+        let cardAdded = false;
+
+        do {
+
+        const cardsData = await fs.readFile(path.resolve(__dirname, `../data/cards.json`));
+        const cardsList = JSON.parse(cardsData);
+        const cardCount = cardsList.length;
+        const newCardCount = cardCount + 1;
+
+        if (cardCount < 9) {
+            card.id = `card00${cardCount + 1}`; 
+        } else if (cardCount < 99) {
+            card.id = `card0${cardCount + 1}`;
+        } else {
+            card.id = `card${cardCount + 1}`;
+        }
+        card.id = `card00${cardCount + 1}`;
+        card.title = `card ${cardCount + 1} title`
+
+        const newCardsList = [...cardsList, card]
+        const newCardsData = JSON.stringify(newCardsList)
+        fs.writeFile(path.resolve(__dirname, `../data/cards_new.json`), newCardsData, (err) => {
+                if (err) throw err;
+            })
+
+        const newFileContents = await fs.readFile(path.resolve(__dirname, `../data/cards_new.json`));
+        const newFileCardsList = JSON.parse(newFileContents);
+        const newFileCardCount = newFileCardsList.length;
+
+        if (newCardCount !== newFileCardCount) {
+            throw 500;
+        } else {
+                  fs.writeFile(path.resolve(__dirname, `../data/cards_old${newCardCount}.json`), cardsData, (err) => {
+            if (err) throw err;
+        }) 
+                  fs.writeFile(path.resolve(__dirname, `../data/cards.json`), newCardsData, (err) => {
+            if (err) throw err;
+        }) 
+    }
+        cardAdded = true;
+        return card; 
+    } while (cardAdded === false)     
+    } catch (error) {
+        return error; 
+    }
 };
  
